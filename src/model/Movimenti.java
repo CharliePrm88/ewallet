@@ -1,6 +1,6 @@
 package model;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Movimenti {
 	private int id,iban,id_tipo_movimento;

@@ -1,7 +1,7 @@
 package ctr;
 
+import java.sql.SQLException;
 import java.util.List;
-
 import javax.jws.WebService;
 import dao.ContoCorrenteDao;
 import model.ContoCorrente;
@@ -13,49 +13,79 @@ public class ContoCorrenteCtr {
 	private ResponseContoCorrente rcc;
 	
 	public ResponseContoCorrente inserisciCC(ContoCorrente cc) {
-		boolean risultato= ccd.inserisciContoCorrente(cc);
-		if(risultato) {
+		try {
+			ccd.inserisciContoCorrente(cc);
 			rcc = new ResponseContoCorrente("Ok!",200,"Conto Corrente Creato!",cc,null);
-		}else {
-			rcc = new ResponseContoCorrente("Oooops!",1000,"Qualcosa è andato storto",cc,null);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			rcc = new ResponseContoCorrente("Oooops!",1001,"Classe non trovata!",cc,null);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			rcc = new ResponseContoCorrente("Oooops!",1002,"Eccezione in SQL",cc,null);
 		}
 		return rcc;
 	}
 	public ResponseContoCorrente cancellaCC(ContoCorrente cc) {
-		boolean risultato = ccd.cancellaContoCorrente(cc);
-		if(risultato) {
+		try {
+			ccd.cancellaContoCorrente(cc);
 			rcc = new ResponseContoCorrente("Ok!",200,"Conto Corrente Cancellato!",cc,null);
-		}else {
-			rcc = new ResponseContoCorrente("Oooops!",1000,"Qualcosa è andato storto",cc,null);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			rcc = new ResponseContoCorrente("Oooops!",1001,"Classe non trovata!",cc,null);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			rcc = new ResponseContoCorrente("Oooops!",1002,"Eccezione in SQL",cc,null);
 		}
 		return rcc;
 	}
 	public ResponseContoCorrente ritornaListaCC(){
-		List<ContoCorrente> l1 = ccd.ritornaListaContoCorrente();
-		if(l1.isEmpty()) {
-			rcc = new ResponseContoCorrente("Oooops!",1000,"Qualcosa è andato storto",null,l1);
-		}else {
-			rcc = new ResponseContoCorrente("Ok!",200,"Conto Corrente Cancellato!",null,l1);
+		List<ContoCorrente> l1;
+		try {
+			l1 = ccd.ritornaListaContoCorrente();
+			rcc = new ResponseContoCorrente("Ok!",200,"Lista dei conto Correnti ritornata!",null,l1);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			rcc = new ResponseContoCorrente("Oooops!",1001,"Classe non trovata!",null,null);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			rcc = new ResponseContoCorrente("Oooops!",1002,"Eccezione in SQL",null,null);
 		}
 		return rcc;
 	}
 	
 	public ResponseContoCorrente ritornaCC(int id) {
-		ContoCorrente cc= ccd.ritornaContoCorrente(id);
-		if(cc.getIban()==0) {
-			rcc = new ResponseContoCorrente("Non esiste!",404,"Conto Corrente non trovato!", cc, null);
-		}else {
-		rcc = new ResponseContoCorrente("Ok!",200,"Conto Corrente trovato!", cc, null);
+		try {
+			ContoCorrente cc= ccd.ritornaContoCorrente(id);
+			rcc = new ResponseContoCorrente("Ok!",200,"Conto Corrente trovato!", cc, null);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			rcc = new ResponseContoCorrente("Oooops!",1001,"Classe non trovata!",null,null);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			rcc = new ResponseContoCorrente("Oooops!",1002,"Eccezione in SQL",null,null);
 		}
 		return rcc;
 	}
 	
 	public ResponseContoCorrente modificaCC(ContoCorrente cc) {
-		boolean risposta=ccd.updateContoCorrente(cc);
-		if(risposta) {
+		try {
+			ccd.updateContoCorrente(cc);
 			rcc = new ResponseContoCorrente("Ok!",200,"Conto Corrente Modificato!",cc,null);
-		}else {
-			rcc = new ResponseContoCorrente("Oooops!",1000,"Qualcosa è andato storto",cc,null);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			rcc = new ResponseContoCorrente("Oooops!",1001,"Classe non trovata!",cc,null);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			rcc = new ResponseContoCorrente("Oooops!",1002,"Eccezione in SQL",cc,null);
+			e.printStackTrace();
 		}
 		return rcc;
 	}
