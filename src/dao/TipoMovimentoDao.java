@@ -40,7 +40,7 @@ public class TipoMovimentoDao {
 		String url = "jdbc:mysql://localhost:3306/banca?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 		// Otteniamo una connessione con username e password
 		dbConnection = DriverManager.getConnection(url, "root", "CharliePrm88");
-		String updateTableSQL = "UPDATE tipomovimento SET descrizione=? WHERE id=?";
+		String updateTableSQL = "UPDATE tipomovimento SET descrizione=? WHERE id_tipo_movimento=?";
 		cmd = dbConnection.prepareStatement(updateTableSQL);
 		cmd.setString(1, t.getDescrizione());
 		cmd.setInt(2, t.getId_tipo_movimento());
@@ -69,7 +69,7 @@ public class TipoMovimentoDao {
 		boolean esci = res.next();
 		System.out.print(res);
 		if(esci) {	
-			nuovo = new TipoMovimento(res.getInt("id_tipo_movimento"),res.getString("id_tipo_movimento"));
+			nuovo = new TipoMovimento(res.getInt("id_tipo_movimento"),res.getString("descrizione"));
 		}else {
 			nuovo = new TipoMovimento(0,null);
 		}	
@@ -95,7 +95,7 @@ public class TipoMovimentoDao {
 		System.out.println("Record retrieved!");
 		boolean esci = res.next();
 		while(esci) {
-			TipoMovimento nuovo = new TipoMovimento(res.getInt("id_tipo_movimento"),res.getString("id_tipo_movimento"));
+			TipoMovimento nuovo = new TipoMovimento(res.getInt("id_tipo_movimento"),res.getString("descrizione"));
 			l1.add(nuovo);
 			esci = res.next();
 		}
@@ -113,7 +113,7 @@ public class TipoMovimentoDao {
 		String url = "jdbc:mysql://localhost:3306/banca?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 		// Otteniamo una connessione con username e password
 		dbConnection = DriverManager.getConnection(url, "root", "CharliePrm88");
-		String updateTableSQL = "DELETE FROM tipomovimento WHERE id=?";
+		String updateTableSQL = "DELETE FROM tipomovimento WHERE id_tipo_movimento=?";
 		cmd = dbConnection.prepareStatement(updateTableSQL);
 		cmd.setInt(1, t.getId_tipo_movimento());
 		// execute update SQL statement

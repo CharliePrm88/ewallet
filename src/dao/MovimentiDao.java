@@ -98,7 +98,7 @@ public class MovimentiDao {
 		String url = "jdbc:mysql://localhost:3306/banca?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 		// Otteniamo una connessione con username e password
 		dbConnection = DriverManager.getConnection(url, "root", "CharliePrm88");
-		String query = "SELECT * FROM contocorrente";
+		String query = "SELECT * FROM movimenti";
 		cmd = dbConnection.prepareStatement(query);
 		// execute update SQL stetement
 		ResultSet res = cmd.executeQuery();

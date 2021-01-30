@@ -44,10 +44,11 @@ public class ContoCorrenteDao {
 		String url = "jdbc:mysql://localhost:3306/banca?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 		// Otteniamo una connessione con username e password
 		dbConnection = DriverManager.getConnection(url, "root", "CharliePrm88");
-		String updateTableSQL = "UPDATE contocorrente SET iban=?,saldo=? WHERE idcliente=?";
+		String updateTableSQL = "UPDATE contocorrente SET iban=?, data_creazione=?, saldo=? WHERE idcliente=?";
 		cmd = dbConnection.prepareStatement(updateTableSQL);
 		cmd.setInt(1, c.getIban());
-		cmd.setInt(2, c.getIdCliente());
+		java.sql.Date d = new Date(c.getData_creazione().getTime());
+		cmd.setDate(2, d);
 		cmd.setFloat(3, c.getSaldo());
 		cmd.setInt(4, c.getIdCliente());
 		// execute update SQL stetement
@@ -75,13 +76,14 @@ public class ContoCorrenteDao {
 			System.out.println("Record retrieved!");
 			boolean esci = res.next();
 			System.out.print(res);
-			cmd.close();
-			dbConnection.close();
 			if(esci) {	
 			nuovo = new ContoCorrente(res.getInt("iban"),res.getInt("idcliente"),res.getFloat("saldo"),res.getDate("data_creazione"));
 			}else {
-				nuovo = new ContoCorrente(0,0,0,null);
+				java.sql.Date s = new java.sql.Date(0);
+				nuovo = new ContoCorrente(0,0,0,s);
 			}	
+			cmd.close();
+			dbConnection.close();
 		return nuovo;
 	}
 	
