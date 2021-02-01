@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.jws.WebService;
+import javax.naming.NamingException;
 
 import dao.TipoMovimentoDao;
 import model.TipoMovimento;
@@ -19,10 +20,10 @@ public class TipoMovimentoCtr {
 		try {
 			ccd.inserisciTipoMovimento(cc);
 			rcc = new ResponseTipoMovimento("Ok!",200,"Tipo Movimento Creato!",cc,null);
-		} catch (ClassNotFoundException e) {
+		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			rcc = new ResponseTipoMovimento("Oooops!",1001,"Classe non trovata!",cc,null);
+			rcc = new ResponseTipoMovimento("Oooops!",1001,"Naming Exception!",cc,null);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -35,10 +36,10 @@ public class TipoMovimentoCtr {
 		try {
 			ccd.cancellaTipoMovimento(cc);
 			rcc = new ResponseTipoMovimento("Ok!",200,"Tipo movimento Cancellato!",cc,null);
-		} catch (ClassNotFoundException e) {
+		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			rcc = new ResponseTipoMovimento("Oooops!",1001,"Classe non trovata!",cc,null);
+			rcc = new ResponseTipoMovimento("Oooops!",1001,"Naming Exception!",cc,null);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -55,9 +56,9 @@ public class TipoMovimentoCtr {
 			}else {
 			rcc = new ResponseTipoMovimento("Ok!",200,"Lista Tipo Movimento Creata!",null,l1);
 			}
-		} catch (ClassNotFoundException e) {
+		} catch (NamingException e) {
 			// TODO Auto-generated catch block
-			rcc = new ResponseTipoMovimento("Oooops!",1001,"Classe non trovata!",null,l1);
+			rcc = new ResponseTipoMovimento("Oooops!",1001,"Naming Exception!",null,l1);
 			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -76,10 +77,10 @@ public class TipoMovimentoCtr {
 			}else {
 			rcc = new ResponseTipoMovimento("Ok!",200,"Tipo Movimento trovato!", cc, null);
 			}
-		} catch (ClassNotFoundException e) {
+		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			rcc = new ResponseTipoMovimento("Oooops!",1001,"Classe non trovata!",cc,null);
+			rcc = new ResponseTipoMovimento("Oooops!",1001,"Naming Exception!",cc,null);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -92,10 +93,10 @@ public class TipoMovimentoCtr {
 		try {
 			ccd.updateTipoMovimento(cc);
 			rcc = new ResponseTipoMovimento("Ok!",200,"Tipo Movimento Modificato!",cc,null);
-		} catch (ClassNotFoundException e) {
+		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			rcc = new ResponseTipoMovimento("Oooops!",1001,"Classe non Trovata",cc,null);
+			rcc = new ResponseTipoMovimento("Oooops!",1001,"Naming Exception!",cc,null);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

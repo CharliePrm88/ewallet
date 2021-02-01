@@ -3,6 +3,8 @@ package ctr;
 import java.sql.SQLException;
 import java.util.List;
 import javax.jws.WebService;
+import javax.naming.NamingException;
+
 import dao.ContoCorrenteDao;
 import model.ContoCorrente;
 import response.ResponseContoCorrente;
@@ -16,10 +18,10 @@ public class ContoCorrenteCtr {
 		try {
 			ccd.inserisciContoCorrente(cc);
 			rcc = new ResponseContoCorrente("Ok!",200,"Conto Corrente Creato!",cc,null);
-		} catch (ClassNotFoundException e) {
+		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			rcc = new ResponseContoCorrente("Oooops!",1001,"Classe non trovata!",cc,null);
+			rcc = new ResponseContoCorrente("Oooops!",1001,"Naming Exception!",cc,null);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			rcc = new ResponseContoCorrente("Oooops!",1002,"Eccezione in SQL",cc,null);
@@ -30,10 +32,10 @@ public class ContoCorrenteCtr {
 		try {
 			ccd.cancellaContoCorrente(cc);
 			rcc = new ResponseContoCorrente("Ok!",200,"Conto Corrente Cancellato!",cc,null);
-		} catch (ClassNotFoundException e) {
+		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			rcc = new ResponseContoCorrente("Oooops!",1001,"Classe non trovata!",cc,null);
+			rcc = new ResponseContoCorrente("Oooops!",1001,"Naming Exception!",cc,null);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -46,10 +48,10 @@ public class ContoCorrenteCtr {
 		try {
 			l1 = ccd.ritornaListaContoCorrente();
 			rcc = new ResponseContoCorrente("Ok!",200,"Lista dei conto Correnti ritornata!",null,l1);
-		} catch (ClassNotFoundException e) {
+		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			rcc = new ResponseContoCorrente("Oooops!",1001,"Classe non trovata!",null,null);
+			rcc = new ResponseContoCorrente("Oooops!",1001,"Naming Exception!",null,null);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -62,10 +64,10 @@ public class ContoCorrenteCtr {
 		try {
 			ContoCorrente cc= ccd.ritornaContoCorrente(id);
 			rcc = new ResponseContoCorrente("Ok!",200,"Conto Corrente trovato!", cc, null);
-		} catch (ClassNotFoundException e) {
+		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			rcc = new ResponseContoCorrente("Oooops!",1001,"Classe non trovata!",null,null);
+			rcc = new ResponseContoCorrente("Oooops!",1001,"Naming Exception!",null,null);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -78,10 +80,10 @@ public class ContoCorrenteCtr {
 		try {
 			ccd.updateContoCorrente(cc);
 			rcc = new ResponseContoCorrente("Ok!",200,"Conto Corrente Modificato!",cc,null);
-		} catch (ClassNotFoundException e) {
+		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			rcc = new ResponseContoCorrente("Oooops!",1001,"Classe non trovata!",cc,null);
+			rcc = new ResponseContoCorrente("Oooops!",1001,"Naming Exception!",cc,null);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			rcc = new ResponseContoCorrente("Oooops!",1002,"Eccezione in SQL",cc,null);
