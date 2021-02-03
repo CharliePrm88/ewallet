@@ -62,7 +62,6 @@ public class MovimentiDao {
 		ResultSet res = cmd.executeQuery();
 		System.out.println("Record retrieved!");
 		boolean esci = res.next();
-		System.out.print(res);
 		if(esci) {	
 		nuovo = new Movimenti(res.getInt("id"),res.getInt("iban"),res.getInt("id_tipo_movimento"),res.getFloat("importo"),res.getDate("data_movimento"));
 		}else {

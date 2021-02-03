@@ -54,7 +54,6 @@ public class TipoMovimentoDao {
 		ResultSet res = cmd.executeQuery();
 		System.out.println("Record retrieved!");
 		boolean esci = res.next();
-		System.out.print(res);
 		if(esci) {	
 			nuovo = new TipoMovimento(res.getInt("id_tipo_movimento"),res.getString("descrizione"));
 		}else {

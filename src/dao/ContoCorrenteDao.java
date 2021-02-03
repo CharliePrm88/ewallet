@@ -61,7 +61,6 @@ public class ContoCorrenteDao {
 		ResultSet res = cmd.executeQuery();
 		System.out.println("Record retrieved!");
 		boolean esci = res.next();
-		System.out.print(res);
 		if(esci) {	
 			nuovo = new ContoCorrente(res.getInt("iban"),res.getInt("idcliente"),res.getFloat("saldo"),res.getDate("data_creazione"));
 		}else {
